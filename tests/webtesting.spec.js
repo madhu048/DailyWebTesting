@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 
+
 async function urlStatus(page,url){
     try {
         const response = await page.goto(url);
@@ -47,7 +48,7 @@ const links = {imaginX:"https://www.imaginxavr.com/",
                CellDevision:"https://experience.imaginxavr.com/cell-division/",
                DNA:"https://experience.imaginxavr.com/dna-stem/",
                Electricity:"https://experience.imaginxavr.com/electricity-stem/",
-               Lipids:"https://experience.imaginxavr.com/lipids-stem/",
+               Lipids:"https://experience.imaginxavr.com/lipids-stem-core/",
                LipidsDemolink:"https://experience.imaginxavr.com/lipids-stem/",
                NursingIVinsertion:"https://experience.imaginxavr.com/nursing-IV-insertion/",
                ClientVideos:"https://experience.imaginxavr.com/ClientVideos/",
@@ -79,7 +80,7 @@ const links = {imaginX:"https://www.imaginxavr.com/",
             }
 
 
-test('Url checking',async({page})=>{
+test('Url checking',async({page},testInfo)=>{
 
     const keys = Object.keys(links);
     console.log(`Total links: ${keys.length}`);
@@ -88,6 +89,10 @@ test('Url checking',async({page})=>{
         const value = links[keys[i]];
         console.log(`${key}: ${value}.`);
         await urlStatus(page,value);
+        const screenshotPath = `screenshots/${key}.png`;
+        await page.screenshot({path:screenshotPath,fullPage:true});
+        // This one will attach the every screenshot manually to the html report from screenshot folder
+        await testInfo.attach(`${key}`,{path:screenshotPath,contentType:'image/png'})
     }
         
     });

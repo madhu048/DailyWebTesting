@@ -16,6 +16,8 @@ export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
+  // This will clear the screenshots folder for every new execution of project.
+  globalSetup: './global-setup.js',
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -70,7 +72,7 @@ export default defineConfig({
     // },
     {
       name: 'Google Chrome',
-      use: { /*...devices['Desktop Chrome'],*/ channel: 'chrome',headless:false,video:'on',viewport: { width: 1920, height: 1080 }, },
+      use: { /*...devices['Desktop Chrome'],*/ channel: 'chrome',headless:true,video:'on',viewport: { width: 1920, height: 1080 },screenshot:'on' },
     },
   ],
 
