@@ -22,6 +22,8 @@ async function urlStatus(page,url){
         }
     } catch (error) {
         console.error(`❌ There is issue with Url: ${url}: ${error}`);
+        console.error(`➡️ Error Message: ${error.message}`);
+        console.error(`➡️ Error Stack: ${error.stack}`);
         expect.soft(false).toBeTruthy();
         return false;
     }
