@@ -13,11 +13,11 @@ async function urlStatus(page,url){
         let statusCode = await response.status();
         if(statusCode < 400){
             expect.soft(statusCode).toBeLessThan(400);
-            console.log(`✅ ${await statusCode}-${url} is loading fine.`);
+            console.log(`Status- ✅ ${await statusCode}-${url} is loading fine.`);
             return true;
         }else{
             expect.soft(false).toBeTruthy();
-            console.log(`⚠️ ${statusCode}-There is a isssue with url: ${url}`)
+            console.log(`Ststus- ⚠️ ${await statusCode}-There is a isssue with url: ${url}`)
             return false;
         }
     } catch (error) {
@@ -89,7 +89,7 @@ test('Url checking',async({page},testInfo)=>{
     for(let i=0;i < keys.length;i++){
         const key = keys[i];
         const value = links[keys[i]];
-        console.log(`${key}: ${value}.`);
+        console.log(`${key}-link: ${value}.`);
         await urlStatus(page,value);
         const screenshotPath = `screenshots/${key}.png`;
         await page.screenshot({path:screenshotPath,fullPage:true});
