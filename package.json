@@ -10,7 +10,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.53.2",
-    "@types/node": "^24.1.0",
+    "@types/node": "^24.0.10",
     "fs-extra": "^11.3.0"
   }
 }
